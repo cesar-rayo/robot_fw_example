@@ -1,13 +1,19 @@
 *** Settings ***
-Documentation    Suite description
+Library  SeleniumLibrary
 
-*** Test Cases ***
-Test title
-    [Tags]    DEBUG
-    Provided precondition
-    When action
-    Then check expectations
+*** Variables ***
+@{CAPABILITIES}
+    ...  browserName: ${BROWSER},
+    ...  platform: linux,
+    ...  name: RobotFramework Test
+
+${REMOTE_URL}  http://localhost:4444
 
 *** Keywords ***
-Provided precondition
-    Setup system under test
+begin web test
+    open browser  url=about:blank
+    ...  remote_url=${REMOTE_URL}
+    ...  desired_capabilities=${EMPTY.join(${CAPABILITIES})}
+
+end web test
+    close browser

@@ -1,31 +1,16 @@
 *** Settings ***
 Documentation  Present some information about this test suite
-Library  SeleniumLibrary
-
-*** Variables ***
-# ${BROWSER}  chrome
-@{CAPABILITIES}
-    ...  browserName: chrome,
-    ...  platform: linux,
-    ...  name: RobotFramework Test
-
-${REMOTE_URL}  http://localhost:4444
-
+Resource  ../../resources/common.robot  # necessary for Setup & Teardown
+Resource  ../../resources/the_internet/pages/LandingPage.robot
+Resource  ../../resources/the_internet/pages/LoginPage.robot
+test setup  common.begin web test
+test teardown  common.end web test
 
 *** Test Cases ***
 User goes to the home page
     [Documentation]  This is some info about test
     [Tags]  Smoke
-    open browser  url=https://the-internet.herokuapp.com/
-#   ...  browser=${BROWSER}
-    ...  remote_url=${REMOTE_URL}
-    ...  desired_capabilities=${EMPTY.join(${CAPABILITIES})}
-    wait for condition  return document.title == "The Internet"
-    click link  css=a[href="/login"]
-    wait until element is visible  id=username
-    input text  id=username  tomsmith
-    input password  id=password  SuperSecretPassword!
-    click button  css=button[type="submit"]
-    wait until element is visible  id=flash
+    LandingPage.load
+    LandingPage.go to login page
+    LoginPage.fill form credentials
     Sleep  2s
-    Close Browser
