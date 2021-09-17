@@ -5,7 +5,7 @@ Library  SeleniumLibrary
 *** Variables ***
 # ${BROWSER}  chrome
 @{CAPABILITIES}
-    ...  browserName: chrome,
+    ...  browserName: firefox,
     ...  platform: linux,
     ...  name: RobotFramework Test
 
@@ -16,16 +16,15 @@ ${REMOTE_URL}  http://localhost:4444
 User goes to the home page
     [Documentation]  This is some info about test
     [Tags]  Smoke
-    open browser  url=https://the-internet.herokuapp.com/
+    open browser  url=https://formy-project.herokuapp.com/
 #   ...  browser=${BROWSER}
     ...  remote_url=${REMOTE_URL}
     ...  desired_capabilities=${EMPTY.join(${CAPABILITIES})}
-    wait for condition  return document.title == "The Internet"
-    click link  css=a[href="/login"]
-    wait until element is visible  id=username
-    input text  id=username  tomsmith
-    input password  id=password  SuperSecretPassword!
-    click button  css=button[type="submit"]
-    wait until element is visible  id=flash
-    Sleep  2s
+    wait for condition  return document.title == "Formy"
+    click link  css=a[href="/form"]
+    wait until element is visible  id=first-name
+    input text  id=first-name  First Name
+    input text  id=last-name  Last Name
+    input text  id=job-title  Job Title
+    Sleep  1s
     Close Browser
