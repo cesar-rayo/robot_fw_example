@@ -1,14 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
 
-*** Variables ***
-@{CAPABILITIES}
-    ...  browserName: ${BROWSER},
-    ...  platform: linux,
-    ...  name: RobotFramework Test
-
-${REMOTE_URL}  http://localhost:4444
-
 *** Keywords ***
 begin web test
     open browser  url=about:blank
@@ -19,3 +11,9 @@ begin web test
 
 end web test
     close browser
+
+insert test data
+    log  inserting test data
+
+delete test data
+    log  deleting test data
