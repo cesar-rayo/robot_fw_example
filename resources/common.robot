@@ -1,6 +1,13 @@
 *** Settings ***
 Library  SeleniumLibrary
 
+*** Variables ***
+# Takes the value provided in the command with flag -v
+# Command > Scripts > Keywords
+
+${BROWSER}  test override
+
+
 *** Keywords ***
 begin web test
     open browser  url=about:blank
@@ -10,7 +17,8 @@ begin web test
     delete all cookies
 
 end web test
-    close browser
+    # Clean up everything (temp files and sessions)
+    close all browsers
 
 insert test data
     log  inserting test data
