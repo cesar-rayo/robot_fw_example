@@ -1,4 +1,5 @@
 *** Settings ***
+Library  ../../libraries/CustomLibrary.py
 Documentation  Present some information about this test suite
 Resource  ../../resources/common.robot  # necessary for Setup & Teardown
 Resource  ../../resources/formy/pages/LandingPage.robot
@@ -24,3 +25,4 @@ User goes to the home page
     LandingPage.go to forms page
     FormPage.fill form
     Sleep  1s
+    do some custom action
