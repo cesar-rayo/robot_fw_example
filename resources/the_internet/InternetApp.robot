@@ -10,6 +10,13 @@ Login with Many Invalid Credentials
         run keyword and continue on failure  Attempt Login from csv  ${Credential}
     END
 
+Login with Many Invalid Credentials from json
+    [Arguments]  ${CredentialsList}
+    FOR  ${Credential}  IN  @{CredentialsList}
+        run keyword and continue on failure  Navigate to Sign In Page
+        run keyword and continue on failure  Attempt Login from dict  ${Credential}
+    END
+
 
 Test Multiple Login Scenarios
     [Arguments]  ${Credentials}
@@ -30,6 +37,13 @@ Attempt Login
 Attempt Login from csv
     [Arguments]  ${Credentials}
     LoginPage.fill credentials from list  ${Credentials}
+    LoginPage.click submit
+    ${alert} =  LoginPage.get alert message
+    Log  ${alert}
+
+Attempt Login from dict
+    [Arguments]  ${Credentials}
+    LoginPage.fill credentials from dict  ${Credentials}
     LoginPage.click submit
     ${alert} =  LoginPage.get alert message
     Log  ${alert}

@@ -1,0 +1,16 @@
+{
+  "Users": [
+    {
+      "Email": "someone@notregistered.com",
+      "Password": "TestPassword!"
+    },
+    {
+      "Email": "someone@registereduser.com",
+      "Password": "TestPassword!"
+    },
+    {
+      "Email": "#BLANK",
+      "Password": "#BLANK"
+    }
+  ]
+}

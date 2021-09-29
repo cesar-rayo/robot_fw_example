@@ -36,3 +36,7 @@ Invalid login scenarios using template
 Invalid login scenarios using CSV
     ${InvalidLoginScenarios} =  DataManager.Get CSV Data  ${INVALID_CREDENTIALS_PATH_CSV}
     InternetApp.Login with Many Invalid Credentials  ${InvalidLoginScenarios}
+
+Invalid login scenarios using JSON
+    ${InvalidLoginScenarios} =  DataManager.Get JSON Data  ${INVALID_CREDENTIALS_PATH_JSON}
+    InternetApp.Login with Many Invalid Credentials from json  ${InvalidLoginScenarios["Users"]}

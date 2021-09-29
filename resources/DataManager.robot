@@ -8,3 +8,8 @@ Get CSV Data
     [Arguments]  ${FilePath}
     ${Data} =  read csv file  ${FilePath}
     [Return]  ${Data}
+
+Get JSON Data
+    [Arguments]  ${FilePath}
+    ${Data} =  Read Json File  ${FilePath}
+    [Return]  ${Data}

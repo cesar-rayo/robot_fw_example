@@ -38,6 +38,13 @@ fill credentials from list
     run keyword unless  '${Credentials[0]}' == '#BLANK'  Input Text  ${I_LOGIN_USERNAME_INPUT}  ${Credentials[0]}
     run keyword unless  '${Credentials[1]}' == '#BLANK'  Input Text  ${I_LOGIN_PASSWORD_INPUT}  ${Credentials[1]}
 
+fill credentials from dict
+    [Arguments]  ${Credentials}
+    run keyword  clear input fields
+    # Do not run keyword when '#BLANK' is present
+    run keyword unless  '${Credentials["Email"]}' == '#BLANK'  Input Text  ${I_LOGIN_USERNAME_INPUT}  ${Credentials["Email"]}
+    run keyword unless  '${Credentials["Password"]}' == '#BLANK'  Input Text  ${I_LOGIN_PASSWORD_INPUT}  ${Credentials["Password"]}
+
 click submit
     click button  ${I_LOGIN_BTN}
 
