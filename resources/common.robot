@@ -17,7 +17,7 @@ begin web test
     delete all cookies
 
 end web test
-    # Clean up everything (temp files and sessions)
+    # Cleans up everything (temp files and sessions)
     close all browsers
 
 insert test data

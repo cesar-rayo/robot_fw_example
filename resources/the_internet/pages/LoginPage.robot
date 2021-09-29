@@ -25,3 +25,27 @@ fill form credentials
     &{dictionary} =  create dictionary  key1=value1  key2=value2
     log  ${dictionary}[key1]
 
+fill given credentials
+    [Arguments]  ${Credentials}
+    run keyword  clear input fields
+    # Do not run keyword when '#BLANK' is present
+    run keyword unless  '${Credentials.Email}' == '#BLANK'  Input Text  ${I_LOGIN_USERNAME_INPUT}  ${Credentials.Email}
+    run keyword unless  '${Credentials.Password}' == '#BLANK'  Input Text  ${I_LOGIN_PASSWORD_INPUT}  ${Credentials.Password}
+
+fill credentials from list
+    [Arguments]  ${Credentials}
+    run keyword  clear input fields
+    run keyword unless  '${Credentials[0]}' == '#BLANK'  Input Text  ${I_LOGIN_USERNAME_INPUT}  ${Credentials[0]}
+    run keyword unless  '${Credentials[1]}' == '#BLANK'  Input Text  ${I_LOGIN_PASSWORD_INPUT}  ${Credentials[1]}
+
+click submit
+    click button  ${I_LOGIN_BTN}
+
+clear input fields
+    Clear Element Text  ${I_LOGIN_USERNAME_INPUT}
+    Clear Element Text  ${I_LOGIN_PASSWORD_INPUT}
+
+get alert message
+    wait until element is visible  ${I_LOGIN_ALERT}
+    ${alert_text} =  Get Text  ${I_LOGIN_ALERT}
+    [Return]  ${alert_text}
